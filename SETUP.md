@@ -2,7 +2,7 @@
 
 How to switch on the cart and checkout. Everything below is done in the Snipcart dashboard or in `js/config.js`. Shipping, payment and tax are **never** faked in JavaScript.
 
-Read this first, it changes the plan: **Snipcart's Test mode cannot use Stripe.** See "Payment: the plain answer" below.
+Read this first: **payment goes through Mollie** (the gateway Snipcart lists for iDEAL), and **Snipcart's Test mode cannot use any real gateway**. See section 3.
 
 Menu names marked *(check)* come from older or partial documentation. Snipcart's dashboard changes, so compare them with what you see.
 
@@ -16,7 +16,7 @@ Menu names marked *(check)* come from older or partial documentation. Snipcart's
    ```js
    snipcartPublicKey: 'YOUR_PUBLIC_TEST_KEY',
    ```
-   Only the **public** key goes in the code. Never commit the secret API key, a Stripe secret key or webhook secrets.
+   Only the **public** key goes in the code. Never commit the secret API key, a Mollie or other provider secret key, or webhook secrets.
 4. Until a key is there, the site shows the banner "Payments are not configured yet" and logs a console warning. Nothing breaks.
 
 ## 2. Register the domain (required for price validation)
@@ -27,24 +27,33 @@ Snipcart checks every price against `snipcart.json`, fetched from the site. The 
 2. Set the **default domain** to `antoniotakor-tech.github.io` (host only; subdomains must be listed one by one).
 3. `siteUrl` in `js/config.js` must stay `https://antoniotakor-tech.github.io/tostino-demo/`. It cannot be `localhost`: Snipcart's server has to reach the file.
 
-## 3. Payment: the plain answer
+## 3. Payment: Mollie (iDEAL)
 
-What the documentation says (checked 11 Nov 2026):
+**Choice: Mollie.** Snipcart's list of gateways gives iDEAL to Mollie and only credit cards to Stripe. (That list is from 2021; the current release notes do not mention iDEAL for Stripe, so do not count on it.)
 
-- **Test mode** has one built-in test payment method. The docs say: "In Test mode, you can integrate custom payment gateways. However, a default test payment method remains constant. All other payment gateway integrations become accessible only in Live mode." So you cannot connect Stripe (or Mollie) and pay with Stripe test cards while Snipcart is in Test mode.
-- **Stripe through Snipcart** is listed as **credit card only**. That list is from 2021 and Snipcart's current release notes do not mention iDEAL, Apple Pay or Payment Element for Stripe. **I could not confirm that iDEAL works through Snipcart's Stripe integration. Assume it does not.**
-- **iDEAL** is listed under the **Mollie** gateway.
-- Each Snipcart account connects to **one** payment gateway, and you must first fill in **Account → Billing & Payments**.
-- Snipcart and your gateway must use the same currency (EUR).
+What the Snipcart documentation says (checked 11 Nov 2026):
 
-What you can do:
+- **Test mode** has one built-in test payment method. The docs say: "In Test mode, you can integrate custom payment gateways. However, a default test payment method remains constant. All other payment gateway integrations become accessible only in Live mode." So Mollie cannot be connected while Snipcart is in Test mode.
+- Each Snipcart account connects to **one** gateway, and you must first fill in **Account → Billing & Payments**.
+- Snipcart and the gateway must use the same currency (EUR).
+
+What I could **not** verify (Snipcart has no step-by-step page for Mollie):
+
+- how the Snipcart dashboard asks for the Mollie key and which key it expects;
+- whether Snipcart accepts a Mollie **test** key while Snipcart itself is in Live mode, and whether Live mode starts Snipcart billing on your plan. Ask Snipcart support before you rely on it.
+
+Steps:
+
+1. Sign up at mollie.com. Mollie gives you a **test API key** right away; the **live key** only comes after Mollie approves your business, which needs a real KvK number and bank account. A practice project stays on the test key.
+2. In the Mollie dashboard switch on the methods you want (iDEAL, cards, ...). In Mollie's test mode you can simulate paid, failed and cancelled payments, no money moves.
+3. In Snipcart: **Account → Billing & Payments** (fill in your billing details), then pick **Mollie** in the payment gateway list and paste the Mollie key *(check: menu and field names)*.
+4. If Snipcart refuses the gateway in Test mode (expected), you have two choices: keep testing the whole flow with Snipcart's built-in test payment method, or ask Snipcart support about using Live mode with the Mollie test key.
 
 | Goal | Option |
 |---|---|
-| Try the whole flow without money | Stay in **Test mode** and use Snipcart's default test payment method. Carts, shipping, tax, emails and orders all work. |
-| Try Stripe test cards | Needs Snipcart in **Live mode** with Stripe connected using Stripe **test** keys. Ask Snipcart support first whether that is allowed on your plan and whether it starts billing. Not verified. |
-| Offer iDEAL | Use **Mollie** as the gateway (it lists iDEAL). Mollie is also Live-mode only in Snipcart. Or build a Snipcart *custom payment gateway* (more work). |
-| Stripe without a cart | Stripe Payment Links, one per product. No cart, one item per payment. |
+| Try the whole flow without money | Snipcart **Test mode** with its built-in test payment method: cart, shipping, tax, emails and orders all work. |
+| Try iDEAL with Mollie's test mode | Snipcart in Live mode with the Mollie **test** key. Unverified, ask support first. |
+| Cards only, via Stripe | Snipcart's Stripe gateway (credit card only, also Live-mode only). Not recommended here. |
 
 Dutch rule for real iDEAL shops: a KvK number must be shown. The footer shows a clearly fictional one (`KvK 12345678 (fictional)`). Replace it with your real number before going live.
 
@@ -99,7 +108,7 @@ Products are drawn by JavaScript, so Snipcart's HTML crawler cannot see them. In
 
 - **Language**: the EN / NL / IT switch also sets Snipcart's language (`Snipcart.api.session.setLanguage`). Snipcart ships Dutch and Italian.
 - **Theme**: brand colours are CSS variables on `#snipcart` at the end of `css/style.css` (Snipcart theming needs v3.2 or newer, version pinned in `js/config.js`). Snipcart's own fonts are not loaded, see below.
-- **Content-Security-Policy**: the meta tag allows `cdn.snipcart.com`, `app.snipcart.com` and `js.stripe.com`. Snipcart's script needs `'unsafe-eval'` (without it the console shows an EvalError and the cart does not start), which weakens the policy. The default theme also tries to load Montserrat and Open Sans from `fonts.bunny.net`; that is **blocked on purpose** (no extra third party), so the cart uses a fallback font.
+- **Content-Security-Policy**: the meta tag allows `cdn.snipcart.com` and `app.snipcart.com`. No Mollie domain is allowed yet because I could not see how Snipcart's Mollie step loads: if the browser console shows a blocked Mollie address once the gateway is connected, add exactly that address. Snipcart's script needs `'unsafe-eval'` (without it the console shows an EvalError and the cart does not start), which weakens the policy. The default theme also tries to load Montserrat and Open Sans from `fonts.bunny.net`; that is **blocked on purpose** (no extra third party), so the cart uses a fallback font.
 - **Old simulated checkout**: `cart.html`, `order.html`, `js/cart.js`, `js/order.js`, `js/payment.js` and the cart drawer in `js/app.js` are still in the repository, unlinked. Delete them once a real test purchase works end to end.
 
 ## Checklist before a real shop

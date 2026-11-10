@@ -1,5 +1,5 @@
 /* Tostino shop configuration. Only PUBLIC values belong here.
-   Never put a secret key (Stripe secret key, Snipcart secret API key, webhook secrets) in this repository. */
+   Never put a secret key (Snipcart secret API key, Mollie or other provider keys, webhook secrets) in this repository. */
 window.TOSTINO = {
   // Snipcart PUBLIC API key. Use the TEST key while practising, the LIVE key only for a real shop.
   // Empty = payments are off: the site shows a "Payments are not configured" banner and logs a console warning.

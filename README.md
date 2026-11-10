@@ -85,8 +85,8 @@ The cart and checkout are Snipcart's. Start with **SETUP.md**: it lists every da
 
 ## Privacy, accessibility, performance
 
-- The site itself sets no cookies and has no analytics; fonts are self-hosted. With a Snipcart key set, scripts load from Snipcart and Stripe servers, which process cart and payment data and may store data in the browser. `localStorage` keeps the language. See `privacy.html` and `cookies.html`.
-- CSP meta tag: same origin plus Snipcart and Stripe. Snipcart's script needs `'unsafe-eval'` (see SETUP.md). No inline scripts.
+- The site itself sets no cookies and has no analytics; fonts are self-hosted. With a Snipcart key set, scripts load from Snipcart's servers and payments run on Mollie, which process cart and payment data and may store data in the browser. `localStorage` keeps the language. See `privacy.html` and `cookies.html`.
+- CSP meta tag: same origin plus Snipcart. Snipcart's script needs `'unsafe-eval'` (see SETUP.md). No inline scripts.
 - Semantic HTML, skip link, visible focus, keyboard-operable cart drawer (Escape closes, focus is trapped and returned),
   labelled form fields with inline errors, `prefers-reduced-motion` respected.
 - Contrast: small orange labels use a deeper orange (`--accent-text`, 5.3:1 on cream) and orange buttons carry near-black text (5.0:1).
