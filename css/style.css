@@ -451,3 +451,29 @@ legend{padding:0;margin:0 0 8px;font-weight:600;font-size:var(--fs-s)}
 @media (max-width:759px){.fx--band .fx__i:nth-child(n+5){display:none}}
 /* keep the product and order pages calm behind forms and photos */
 [data-page="product"] .fx__i,[data-page="order"] .fx__i{opacity:.4}
+
+/* ---------- Payments: banner when Snipcart is not configured, footer cart link ---------- */
+.paybanner{margin:0;padding:10px var(--gutter);background:var(--orange);color:var(--on-orange);font-weight:600;font-size:var(--fs-s);text-align:center}
+.linkbtn{background:none;border:0;padding:0;font:inherit;color:var(--on-dark);text-decoration:underline;text-underline-offset:3px;cursor:pointer;display:inline-flex;align-items:center;min-height:44px}
+.linkbtn:hover{color:#FFD9B3}
+.foot__kvk{margin:.6rem 0 0;color:var(--on-dark-muted)}
+
+/* ---------- Snipcart cart and checkout theme ----------
+   Uses Snipcart's documented CSS custom properties (v3.2+), set on #snipcart, so it keeps working across updates.
+   The version is pinned in js/config.js. Docs: https://docs.snipcart.com/v3/setup/theming
+   Palette: coffee brown #3B2417, cream #F5EBDD, burnt orange #D2691E (near-black text on orange for contrast). */
+#snipcart{
+  font-family:var(--sans);
+  --color-default:#3B2417; --color-alt:#6B5344; --color-icon:#3B2417; --color-error:#A3200F; --color-success:#2F6B3A;
+  --bgColor-default:#FFFAF2; --bgColor-alt:#F5EBDD; --bgColor-modal:#FFFAF2; --bgColor-modalVeil:rgba(42,25,15,.5);
+  --bgColor-error:#FBE9E5; --bgColor-success:#E6F1E4; --bgColor-info:#F5EBDD;
+  --borderColor-default:#DCCBB3; --borderColor-error:#A3200F;
+  --color-link:#3B2417; --borderColor-input-focus:#3B2417;
+  --color-buttonPrimary:#1F1209; --bgColor-buttonPrimary:#D2691E; --borderColor-buttonPrimary:#D2691E;
+  --color-buttonPrimary-hover:#1F1209; --bgColor-buttonPrimary-hover:#E07A2F; --borderColor-buttonPrimary-hover:#E07A2F;
+  --color-buttonPrimary-active:#1F1209; --bgColor-buttonPrimary-active:#B8581A; --borderColor-buttonPrimary-active:#B8581A;
+  --color-buttonPrimary-focus:#1F1209; --bgColor-buttonPrimary-focus:#E07A2F; --borderColor-buttonPrimary-focus:#3B2417;
+  --color-buttonPrimary-disabled:#6B5344; --bgColor-buttonPrimary-disabled:#EDDFCB; --borderColor-buttonPrimary-disabled:#EDDFCB;
+  --color-buttonSecondary:#3B2417; --bgColor-buttonSecondary:transparent; --borderColor-buttonSecondary:#3B2417;
+  --color-buttonSecondary-hover:#FFFFFF; --bgColor-buttonSecondary-hover:#3B2417; --borderColor-buttonSecondary-hover:#3B2417;
+}
