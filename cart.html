@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cart and checkout · Tostino</title>
+<meta name="description" content="Tostino is an invented small coffee roastery in Utrecht, a practice project.">
+<!-- Practice project: keep out of search engines -->
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; font-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#3B2417">
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/fraunces-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/style.css?v=20261110192423">
+</head>
+<body data-page="cart">
+<a class="skip" href="#site-main" data-i18n="skip">Skip to content</a>
+<div id="site-header"><div class="topbar"><div class="wrap topbar__in"><span data-i18n="top.address">Oudegracht 112, Utrecht</span><span data-i18n="top.ship">Ships in 48 hours · Free shipping over €40</span></div></div><header class="top"><div class="wrap top__in"><a class="logo" href="index.html" aria-label="Tostino, home" data-i18n-attr="aria-label=logo.aria"><svg class="logo__mark" viewBox="0 0 44 44" aria-hidden="true" focusable="false"><circle cx="22" cy="22" r="21" class="mark-bg"/><g transform="rotate(35 22 22)"><ellipse cx="22" cy="22" rx="7.4" ry="11.4" class="mark-bean"/><path class="mark-line" d="M22 11.4c-4.4 5.2 4.4 9.6 0 21.2" fill="none" stroke-width="2" stroke-linecap="round"/></g></svg><span class="logo__word" aria-hidden="true">tostin<svg class="logo__bean" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g transform="rotate(35 12 12)"><ellipse cx="12" cy="12" rx="6.2" ry="9.6" fill="currentColor"/><path class="bean-line" d="M12 3c-3.8 4.6 3.8 8.4 0 18" fill="none" stroke-width="2" stroke-linecap="round"/></g></svg></span></a><nav class="nav" aria-label="Main menu" data-i18n-attr="aria-label=nav.aria"><a href="shop.html" data-i18n="nav.shop">Shop</a><a href="about.html" data-i18n="nav.about">About</a><a href="index.html#visit" data-i18n="nav.visit">Visit</a></nav><div class="langs" role="group" aria-label="Language" data-i18n-attr="aria-label=lang.label"><button type="button" data-lang="en" lang="en" aria-pressed="false">EN</button><button type="button" data-lang="nl" lang="nl" aria-pressed="false">NL</button><button type="button" data-lang="it" lang="it" aria-pressed="false">IT</button></div><button class="cartbtn" type="button" data-cart-open aria-haspopup="dialog"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2.5l2.2 10.2a1.5 1.5 0 0 0 1.5 1.2h8.2a1.5 1.5 0 0 0 1.5-1.1L20.5 8H6.2"/><circle cx="9.5" cy="19.5" r="1.3"/><circle cx="17" cy="19.5" r="1.3"/></svg><span class="cartbtn__label" data-i18n="cart.title">Cart</span><span class="cartbtn__count" data-cart-count>0</span></button></div></header></div>
+<main id="site-main">
+<section class="pagehead" data-fx="band"><div class="wrap"><h1 data-i18n="cartpage.h1">Your cart</h1><p class="lead" data-i18n="cartpage.lead">Check your order, then fill in your details.</p></div></section>
+<section class="section"><div class="wrap cartpage">
+<div>
+<div id="cart-lines"></div>
+<form id="checkout" class="panel" novalidate hidden>
+<h2 data-i18n="co.details">Your details</h2>
+<div class="field"><label for="f-name" data-i18n="co.name">Full name</label><input id="f-name" name="f-name" type="text" autocomplete="name" aria-describedby="err-f-name" ><p class="err" id="err-f-name"></p></div>
+<div class="field"><label for="f-email" data-i18n="co.email">Email</label><input id="f-email" name="f-email" type="email" autocomplete="email" aria-describedby="err-f-email" inputmode="email"><p class="err" id="err-f-email"></p></div>
+<fieldset><legend data-i18n="co.delivery">Delivery</legend><div class="paylist">
+<label class="payopt"><input type="radio" name="delivery" value="ship" checked><span data-i18n="co.ship">PostNL delivery (€4.95, free over €40)</span></label><label class="payopt"><input type="radio" name="delivery" value="pickup"><span data-i18n="co.pickup">Pick up in Utrecht (free, Tue–Sat)</span></label>
+</div></fieldset>
+<div id="address-fields"><fieldset><legend data-i18n="co.address">Delivery address</legend>
+<div class="field"><label for="f-street" data-i18n="co.street">Street and house number</label><input id="f-street" name="f-street" type="text" autocomplete="street-address" aria-describedby="err-f-street" ><p class="err" id="err-f-street"></p></div>
+<div class="row2"><div class="field"><label for="f-postcode" data-i18n="co.postcode">Postcode</label><input id="f-postcode" name="f-postcode" type="text" autocomplete="postal-code" aria-describedby="err-f-postcode" maxlength="7" inputmode="text"><p class="err" id="err-f-postcode"></p></div><div class="field"><label for="f-city" data-i18n="co.city">City</label><input id="f-city" name="f-city" type="text" autocomplete="address-level2" aria-describedby="err-f-city" ><p class="err" id="err-f-city"></p></div></div>
+<p class="fine" data-i18n="co.country">We deliver in the Netherlands only.</p>
+</fieldset></div>
+<fieldset><legend data-i18n="co.payment">Payment method</legend><div class="paylist">
+<label class="payopt"><input type="radio" name="pay" value="ideal" checked><span data-i18n="co.ideal">iDEAL</span></label><label class="payopt"><input type="radio" name="pay" value="card"><span data-i18n="co.card">Card</span></label><label class="payopt"><input type="radio" name="pay" value="applepay"><span data-i18n="co.applepay">Apple Pay</span></label>
+</div></fieldset>
+</form>
+</div>
+<aside class="summary panel" id="cart-side" hidden aria-labelledby="sum-title">
+<h2 id="sum-title" data-i18n="co.summary">Order summary</h2>
+<div id="cart-totals"></div>
+<p class="banner" data-i18n="co.practice">Practice project: no real payment is taken. Nothing you type leaves your browser.</p>
+<p class="formerr" id="form-error" role="alert"></p>
+<button class="btn btn--block" id="pay-btn" type="submit" form="checkout">Place practice order</button>
+</aside>
+</div></section>
+</main>
+<div id="site-footer"><footer class="foot"><div class="wrap"><div class="foot__grid"><div><h3 data-i18n="foot.brand">Tostino</h3><p data-i18n="foot.blurb">Small-batch coffee roastery on the Oudegracht in Utrecht.</p><p>Oudegracht 112, Utrecht<br><a href="mailto:ciao@tostino.example">ciao@tostino.example</a></p></div><div><h3 data-i18n="foot.shop">Shop</h3><ul><li><a href="shop.html" data-i18n="nav.shop">Shop</a></li><li><a href="about.html" data-i18n="nav.about">About</a></li><li><a href="contact.html" data-i18n="nav.contact">Contact</a></li><li><a href="cart.html" data-i18n="cart.title">Cart</a></li><li><a href="https://github.com/antoniotakor-tech/tostino-demo" target="_blank" rel="noopener noreferrer" data-i18n="foot.github">Source code on GitHub</a></li></ul></div><div><h3 data-i18n="foot.legal">Legal</h3><ul><li><a href="privacy.html" data-i18n="foot.privacy">Privacy</a></li><li><a href="cookies.html" data-i18n="foot.cookies">Cookies</a></li><li><a href="terms.html" data-i18n="foot.terms">Terms and shipping</a></li></ul></div></div><p class="foot__note" data-i18n="foot.practice">Practice project: Tostino is an invented business. Names, prices, reviews and contact details are made up.</p></div></footer></div>
+<script src="js/app.js?v=20261110192423" defer></script>
+<script src="js/payment.js?v=20261110192423" defer></script>
+<script src="js/cart.js?v=20261110192423" defer></script>
+</body>
+</html>

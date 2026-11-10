@@ -1,0 +1,130 @@
+{
+  "currency": "EUR",
+  "shipping": { "flat": 4.95, "freeOver": 40.00, "carrier": "PostNL" },
+  "grinds": ["whole beans", "moka", "filter", "espresso"],
+  "products": [
+    {
+      "id": "canale-blend",
+      "name": "Canale Blend",
+      "category": "coffee",
+      "roast": "medium",
+      "origin": "Brazil + Colombia (blend)",
+      "notes": ["milk chocolate", "hazelnut", "caramel"],
+      "brewWith": ["moka", "filter"],
+      "taste": ["chocolate and nuts"],
+      "description": "Our everyday coffee. Soft, round, great for moka and filter. If you don't know where to start, start here.",
+      "sizes": [
+        { "label": "250 g", "price": 8.50 },
+        { "label": "1 kg", "price": 29.00 }
+      ],
+      "image": "assets/bag.webp",
+      "featured": true
+    },
+    {
+      "id": "domtoren-espresso",
+      "name": "Domtoren Espresso",
+      "category": "coffee",
+      "roast": "dark",
+      "origin": "India + Peru (blend)",
+      "notes": ["dark cocoa", "spice", "long finish"],
+      "brewWith": ["espresso"],
+      "taste": ["strong and dark"],
+      "description": "Intense and creamy, made for people who like a bold espresso. Holds up well with milk too.",
+      "sizes": [
+        { "label": "250 g", "price": 9.00 },
+        { "label": "1 kg", "price": 31.00 }
+      ],
+      "image": "assets/bag.webp",
+      "featured": true
+    },
+    {
+      "id": "ethiopia-guji",
+      "name": "Ethiopia Guji",
+      "category": "coffee",
+      "roast": "light",
+      "origin": "Ethiopia, Guji region, washed",
+      "notes": ["bergamot", "peach", "white flowers"],
+      "brewWith": ["filter"],
+      "taste": ["fruity and bright"],
+      "description": "A lively, fragrant single origin, ideal for filter. For anyone who wants to discover the fruity side of coffee.",
+      "sizes": [
+        { "label": "250 g", "price": 10.50 },
+        { "label": "1 kg", "price": 37.00 }
+      ],
+      "image": "assets/bag.webp",
+      "featured": true
+    },
+    {
+      "id": "guatemala-huehuetenango",
+      "name": "Guatemala Huehuetenango",
+      "category": "coffee",
+      "roast": "medium",
+      "origin": "Guatemala, Huehuetenango highlands",
+      "notes": ["red apple", "cocoa", "brown sugar"],
+      "brewWith": ["filter", "espresso"],
+      "taste": ["fruity and bright", "chocolate and nuts"],
+      "description": "Balanced and sweet, with a clean acidity. Good as filter and as espresso.",
+      "sizes": [
+        { "label": "250 g", "price": 10.00 },
+        { "label": "1 kg", "price": 35.00 }
+      ],
+      "image": "assets/bag.webp",
+      "featured": false
+    },
+    {
+      "id": "decaf-colombia",
+      "name": "Decaf Colombia",
+      "category": "coffee",
+      "roast": "medium",
+      "origin": "Colombia, water-process decaf",
+      "notes": ["caramel", "almond", "sweet citrus"],
+      "brewWith": ["moka", "filter", "espresso"],
+      "taste": ["no caffeine"],
+      "description": "All the taste, none of the caffeine. For the evening, or for anyone who avoids caffeine.",
+      "sizes": [
+        { "label": "250 g", "price": 9.50 },
+        { "label": "1 kg", "price": 33.00 }
+      ],
+      "image": "assets/bag.webp",
+      "featured": false
+    },
+    {
+      "id": "tostino-mug",
+      "name": "Tostino ceramic mug",
+      "category": "accessories",
+      "colors": ["cream", "brown"],
+      "description": "Handmade by a ceramicist from Utrecht. 250 ml, with the Tostino bean on the bottom.",
+      "price": 14.00,
+      "image": "assets/mug.webp",
+      "featured": false
+    },
+    {
+      "id": "v60-set",
+      "name": "Ceramic V60 dripper + 100 paper filters",
+      "category": "accessories",
+      "description": "Everything you need to start making filter coffee at home.",
+      "price": 24.00,
+      "image": "assets/v60.webp",
+      "featured": false
+    },
+    {
+      "id": "moka-3-cup",
+      "name": "Bialetti Moka, 3 cups",
+      "category": "accessories",
+      "description": "The classic Italian aluminium moka. Perfect with Canale Blend.",
+      "price": 26.00,
+      "image": "assets/moka.webp",
+      "featured": false
+    },
+    {
+      "id": "discovery-set",
+      "name": "Discovery gift set",
+      "category": "accessories",
+      "contents": ["Canale Blend 250 g", "Ethiopia Guji 250 g", "Guatemala Huehuetenango 250 g"],
+      "description": "The easiest way to try three different coffees, or to give a gift. Comes in a Tostino box.",
+      "price": 27.00,
+      "image": "assets/giftset.webp",
+      "featured": false
+    }
+  ]
+}
