@@ -1,7 +1,7 @@
 # Tostino (practice project)
 
 An invented small coffee roastery in Utrecht, with a working shop. Plain HTML, CSS and vanilla JavaScript.
-No framework, no build step, no cookies, no tracking. The checkout is a **simulation**: no real payment is taken.
+No framework, no build step. The shop itself sets no cookies and has no tracking. Cart and checkout run on **Snipcart** (see `SETUP.md`); payments are test only, nothing is shipped.
 Tostino, Giulia Ferri, the prices, reviews and contact details are made up.
 
 ## Run it locally
@@ -42,7 +42,10 @@ lang/en|nl|it.json   all interface text and product translations
 css/style.css        one stylesheet, colour tokens at the top
 js/app.js            language switch, cart store, header, footer, cart drawer (shared by every page)
 js/home.js shop.js product.js cart.js order.js contact.js   one small script per page
-js/payment.js        the payment adapter (simulation, see below)
+js/config.js         public Snipcart key, site URL (see SETUP.md)
+js/snipcart.js       loads Snipcart, language sync, "not configured" banner
+scripts/build-snipcart-json.js   builds snipcart.json from products.json
+js/payment.js        OLD simulated checkout (unused, delete after a real test purchase)
 assets/              photos, logo and self-hosted fonts (Inter and Fraunces, OFL licences included)
 ```
 
@@ -68,24 +71,22 @@ The file name per product is set in `products.json` (`"image": "assets/bag.png"`
 Shipping (€4.95, free over €40) lives at the top of `products.json`. The "Ships in 48 hours · Free shipping over €40"
 text is in the language files (`top.ship`, `co.ship`).
 
-## Connect a real payment provider
+## Cart and checkout (Snipcart)
 
-All checkout code goes through one function: `TostinoPayment.pay(order)` in `js/payment.js`. It currently waits a second and says "paid".
-The file has a comment block showing where to plug in:
+The cart and checkout are Snipcart's. Start with **SETUP.md**: it lists every dashboard step (domain, payment, shipping, VAT, emails, orders) and says plainly what Snipcart's Test mode can and cannot do.
 
-- **Stripe Payment Links** (no server): one link per product and size, then redirect with `window.location.href`.
-  A mixed cart needs Stripe Checkout Sessions, which needs a small serverless function.
-- **Snipcart** (no server): add its script and `data-item-*` attributes to the "Add to cart" button and let it own cart and checkout.
-
-When you do this, also: allow the provider's domains in the `Content-Security-Policy` meta tag on every page,
-update `privacy.html` and `cookies.html` (providers set cookies), replace the "practice project" notices,
-and add real company details (KvK, VAT, return address).
+- `js/config.js`: put the Snipcart **public** API key here (never a secret key). Without it the site shows a "Payments are not configured" banner.
+- `js/snipcart.js`: loads Snipcart and follows the EN / NL / IT switch.
+- `js/product.js`: the Add-to-cart button is a Snipcart button; its `data-item-*` attributes follow size, grind or colour, and quantity.
+- `snipcart.json`: the price list Snipcart validates against. Rebuild it after any change in `products.json`:
+  ```bash
+  node scripts/build-snipcart-json.js
+  ```
 
 ## Privacy, accessibility, performance
 
-- No cookies, no analytics, no third-party requests (fonts are self-hosted). `localStorage` keeps the language and the cart;
-  `sessionStorage` keeps the last practice order until the tab closes. See `cookies.html`.
-- Strict CSP meta tag (same origin only). No inline scripts or styles.
+- The site itself sets no cookies and has no analytics; fonts are self-hosted. With a Snipcart key set, scripts load from Snipcart and Stripe servers, which process cart and payment data and may store data in the browser. `localStorage` keeps the language. See `privacy.html` and `cookies.html`.
+- CSP meta tag: same origin plus Snipcart and Stripe. Snipcart's script needs `'unsafe-eval'` (see SETUP.md). No inline scripts.
 - Semantic HTML, skip link, visible focus, keyboard-operable cart drawer (Escape closes, focus is trapped and returned),
   labelled form fields with inline errors, `prefers-reduced-motion` respected.
 - Contrast: small orange labels use a deeper orange (`--accent-text`, 5.3:1 on cream) and orange buttons carry near-black text (5.0:1).
