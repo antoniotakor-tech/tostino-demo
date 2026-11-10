@@ -1,0 +1,72 @@
+[
+  {
+    "id": "canale-blend-250g",
+    "price": 8.5,
+    "url": "https://antoniotakor-tech.github.io/tostino-demo/snipcart.json"
+  },
+  {
+    "id": "canale-blend-1kg",
+    "price": 29,
+    "url": "https://antoniotakor-tech.github.io/tostino-demo/snipcart.json"
+  },
+  {
+    "id": "domtoren-espresso-250g",
+    "price": 9,
+    "url": "https://antoniotakor-tech.github.io/tostino-demo/snipcart.json"
+  },
+  {
+    "id": "domtoren-espresso-1kg",
+    "price": 31,
+    "url": "https://antoniotakor-tech.github.io/tostino-demo/snipcart.json"
+  },
+  {
+    "id": "ethiopia-guji-250g",
+    "price": 10.5,
+    "url": "https://antoniotakor-tech.github.io/tostino-demo/snipcart.json"
+  },
+  {
+    "id": "ethiopia-guji-1kg",
+    "price": 37,
+    "url": "https://antoniotakor-tech.github.io/tostino-demo/snipcart.json"
+  },
+  {
+    "id": "guatemala-huehuetenango-250g",
+    "price": 10,
+    "url": "https://antoniotakor-tech.github.io/tostino-demo/snipcart.json"
+  },
+  {
+    "id": "guatemala-huehuetenango-1kg",
+    "price": 35,
+    "url": "https://antoniotakor-tech.github.io/tostino-demo/snipcart.json"
+  },
+  {
+    "id": "decaf-colombia-250g",
+    "price": 9.5,
+    "url": "https://antoniotakor-tech.github.io/tostino-demo/snipcart.json"
+  },
+  {
+    "id": "decaf-colombia-1kg",
+    "price": 33,
+    "url": "https://antoniotakor-tech.github.io/tostino-demo/snipcart.json"
+  },
+  {
+    "id": "tostino-mug",
+    "price": 14,
+    "url": "https://antoniotakor-tech.github.io/tostino-demo/snipcart.json"
+  },
+  {
+    "id": "v60-set",
+    "price": 24,
+    "url": "https://antoniotakor-tech.github.io/tostino-demo/snipcart.json"
+  },
+  {
+    "id": "moka-3-cup",
+    "price": 26,
+    "url": "https://antoniotakor-tech.github.io/tostino-demo/snipcart.json"
+  },
+  {
+    "id": "discovery-set",
+    "price": 27,
+    "url": "https://antoniotakor-tech.github.io/tostino-demo/snipcart.json"
+  }
+]
